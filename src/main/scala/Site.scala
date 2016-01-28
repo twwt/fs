@@ -1,17 +1,15 @@
 import java.io.StringReader
-
-import com.typesafe.config.ConfigFactory
 import nu.validator.htmlparser.common.XmlViolationPolicy
 import nu.validator.htmlparser.sax.HtmlParser
 import org.xml.sax.InputSource
-
 import scala.xml.parsing.NoBindingFactoryAdapter
 import scala.xml.{Node, NodeSeq}
 
 trait Site {
 
   val siteId: Int
-  def getTags(html: String, domString: Node => NodeSeq):List[String] = domString(html.toNode).map(_.text).toList
+
+  def getTags(html: String, domString: Node => NodeSeq): List[String] = domString(html.toNode).map(_.text).toList
 
   protected class StringToNode(val string: String) {
     def toNode: Node = {
